@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
+        <style>
+            
+            html{
+                scroll-behavior: smooth;
+            }
+          
+          nav {
+            width: 100%;
+            position: fixed;
+             z-index: 2000;
+            background-color:rgba(0, 0, 0, 0.85);
+            align-items: top;
+            top:0px;
+            padding-bottom: 10px;
+           
+                }
+                nav .menu{
+                width: 90%;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+               }
+               .logo a {
+                text-decoration: none;  
+                font-weight: bold;
+                color: green;
+                font-size: 30px;
+
+            }
+            .imglogo{
+                height: 50px;
+                width: 50px;
+                margin-right: 0px;
+                border-radius: 3px;
+                border: none;
+            }
+            .logo{
+                display: flex;
+                align-items: center; 
+                justify-content: center;
+            }
+            nav ul
+            {
+                display: flex;
+                list-style: none;
+                justify-content:flex-end;
+            }
+            
+          
+            nav ul li:hover::after{
+                content:'';
+                width: 80%;
+                height: 2px;
+                background:green;
+                display: block;
+                margin: auto;
+
+            }
+            nav ul li a 
+            {
+                color: white;
+                font-size: 20px;
+                text-decoration: none;
+               padding: 10px 15px ;
+                border-radius: 10%;
+                transition:all 0.2s ease-out 0.2s;
+            }
+           
+           
+            .hero{
+                position: relative;
+                width: 100vw;
+                height: 100vh;
+                background-image:linear-gradient(to right, rgba(11, 14, 11, 1),rgba(212, 146, 61, 0.3)),url(ecologo\ cropped1.jpg) ;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 20px;
+                text-align: center;
+                
+            }
+            .herotext{
+           
+          
+           width: 50%;
+         margin-top: 38px;
+         background-color: rgba(0, 0, 0, 0.5);
+         backdrop-filter: blur(4px);
+         border-radius: 16px;
+         box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+               }
+
+            .order{
+                padding: 5px 100px;
+                border-radius: 22px;
+                animation: swing 0.5s infinite;
+                margin: 20px;
+                box-shadow: 0px 0px 15px white;
+                border: none;
+                height: 40px;
+                }
+                @keyframes swing{
+                  0%{ transform: rotate(0deg); }
+                  25%{ transform: rotate(5deg);} 
+                  50%{ transform: rotate(0deg);}
+                  75%{transform: rotate(-5deg);}
+                  100%{ transform: rotate(0deg);}
+                }
+            .order:hover{
+                cursor: pointer;
+                animation: none;
+                color: white;
+                background-color: #4c5e50;
+            }
+
+           
+   
+            
+                .herotext h1 {
+      font-size: 48px;
+      background: linear-gradient(to right, #ffdf3c, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    }
+          
+          
+           .offer{
+            color:white;
+            font-weight: bolder;
+           }
+           .offer:hover{
+            font-weight: bold;
+            font-size: medium;
+            color: green;
+            .kshoffer{
+                color:white;
+            }
+
+           }
+           .kshoffer{
+            font-size: large;
+           }
+           .kshoffer:hover{
+            color: green;
+           }
+           .graboffer, .order{
+            background-color:rgba(212, 146, 61);
+            border-radius: 10px;
+            font-weight: bold;
+        
+           }
+           .graboffer:hover{
+            background-color: rgb(145, 86, 10);
+           }
+           .order{
+            background-color:rgba(212, 146, 61);
+            animation: swing 2s infinite;
+            
+           }
+           .slogan{
+            color:white;
+            font-size: 15px;
+            font-weight: bold;
+            
+           }
+           h1{
+            color: white;
+           }
+           p{
+            color: white;
+           }
+           .closeicon{
+            display: none;
+           }
+           .openmenu{
+            display: none;
+           }
+           .slogan{
+            font-size: 25px;
+           }
+            
+           
+
+                       @media(max-width : 810px)
+           {
+            nav .menunav{
+                position:absolute;
+                width: 200px;
+                height: 100vh;
+                background-color:grey;
+                z-index: 2;
+                flex-direction: column;
+                top: 0;
+                right:0;
+                transform: translateX(100%);
+                margin-top: 0px;
+                justify-content: flex-start;
+                text-align: left;
+                border-color: green;
+            }
+           
+            nav ul li:hover::after{
+                content:'';
+                width: 100%;
+                height: 2px;
+                background:green;
+                display: block;
+                margin: auto;
+           }
+          .order{
+            padding: 5px 50px;
+          }
+          nav ul li {
+            margin-left: 0px;
+            margin-bottom: 15px;
+            width: fit-content;
+          }
+          
+          nav ul li a 
+            {
+                
+               padding: 10px 0px;
+               margin-bottom: 30px;
+                
+            }
+            .closeicon{
+                display: block;
+                width: 30px;
+                height: 30px;
+                margin-top: 10px;
+                cursor: pointer;
+                
+                
+            }
+            .openmenu{
+                display: block;
+                height: 30px;
+                width: 30px;
+            }
+            .row1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 30px 20px;
+    }
+           
+        }
+        @media(max-width : 736px)
+        {
+            
+            
+            .herotext{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -58%);
+
+        }
+    }
+    @media(max-width : 680px)
+    {
+        .slogan{
+            color: red;
+        }
+        .herotext{
+            width: 70%;
+        }
+}
+ 
+                                    /* products section */
+
+body {
+  margin: 0;
+  background: linear-gradient(270deg, #6d0898, #720566, #490666, #7909a8);
+  background-size: 800% 800%;
+  animation: waveGradient 10s ease infinite;
+}
+
+@keyframes waveGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+    .products{
+        text-align: center;
+        margin-top: 80px;
+    }
+    .row2{
+        text-align: center;
+    }
+    
+  .column{
+       height: 60vh;
+       border: none;
+       text-align: center;
+    }
+   
+        .aboutus img{
+        width: 20vw;
+        height: 40vh;
+        border-radius: 15%;
+       
+    }
+    .mySlides {
+        width: 40vw !important;
+        height: 70vh !important;
+    }
+    .aboutus img:hover{
+        height: 44vh;
+        width: 22vw;
+       cursor: pointer;
+         box-shadow: 0px 0px 20px green;
+       }
+       .column:hover .price, .product{
+        color: rgb(4, 85, 4);
+        font-weight: bold;
+      
+       }
+    .product, .price{
+        color: black;
+      text-align: center;
+      transition: color 0.3s;
+    }
+    
+   
+    .farmers-div{
+        position: relative;
+    }
+    .prev, .next {
+      position: absolute;
+      top: 45%;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      font-size: 18px;
+      padding: 12px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      z-index: 1;
+    }
+    .prev{
+        left:30%;
+    }
+    .next{
+        right: 30%;
+    }
+    .join{
+        position: absolute;
+        top: 90%;
+        left: 40%;
+        width: 20%;
+        height: 6%;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+    }
+
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal-content .close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .modal-content .close:hover {
+      color: black;
+    }
+    @media(max-width : 810px){
+   
+  
+    }
+         
+        </style>
+    </head>
+    <body> 
+        <section class="hero" id="home">
+            
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <nav> 
+                <div class="menu">
+                    <div class="logo">  <img class="imglogo" src="ecologo.jpg" alt=""> <a href=""> Ecochick</a> </div>
+                   <div class="menuna">
+                    <ul class="menunav">
+                        <img onclick="closemenu()" class="closeicon" src="ecologo.jpg" alt="">
+                        <li><a href="#home">home</a></li>
+                        <li><a href="#aboutus">about us</a></li>
+                        <li><a href="#">contact</a></li>
+                        <li><a href="#">give feedback</a></li>
+                    </ul>
+                </div>
+                <img class="openmenu" src="ecochick.jpg" alt="" onclick="openmenu()" >
+                </div>
+                </nav>
+                   <div class="herotext">
+                    <h1 > Eggxactly what the nature provides  </h1>
+                    <p class="slogan">Plenty of proteins with their natural taste</p>
+                    <p> in search of proteins rich food, we got you covered</p>
+                    <p>we are an ecofriendly organisation that allow chicken to naturally <br> intract with the environment and give the eggs to us.</p>
+                    <p>One crate at ksh 500</p>
+                    <p class="offer"> One crate at <span  class="kshoffer">ksh 400 </span>when you buy <span class="kshoffer"> 10 crates </span> and above <button class="graboffer">Grab the offer</button></p>
+                        <button class="order" onclick=" 
+                        const message = encodeURIComponent(`Hi, I want to order from Ecochick.`);
+                         window.location.href = `whatsapp://send?phone=254716370194&text=${message}`;">Order with us now</button>
+                     
+            </section>
+            <section class="aboutus" id="aboutus">
+                <h2 class="products">our products and services </h2>
+                <div class="row1" >
+                    <div class="column">
+                        <p class="product">Eggs</p>
+                        <img src="ecochick.jpg" alt="">
+                        <p class="price">ksh 400 per crate  <button class="productorder">order eggs</button></p>
+                    </div>
+                    <div class="column" >
+                        <p class="product">chicken</p>
+                        <img src="ecologo.jpg" alt="">
+                        <p class="price">layers at ksh 850  <button class="productorder">order chicken</button></p>
+                    </div>
+                    <div class="column">
+                        <p class="product">chicks</p>
+                        <img src="chicks.jpg" alt="">
+                        <p class="price">ksh 200 per 2 weeks chick <button class="productorder">order chicks</button></p>
+                        <p class="price">ksh 350 per 4 weeks chick<button class="productorder">order chicks</button></p>
+                    </div>
+                  
+                </div>
+                <div class="row2">
+                    <div class="column" >
+                        
+                        <p class="product">Ecochick farmers group</p>
+                    <div class="farmers-div">
+                        <img class="mySlides slide1" src="farmers1.jpg" alt="Image 1">
+                        <img class="mySlides" src="farmers2.jpg" alt="Image 2">
+                        <img class="mySlides" src="farmers3.jpg" alt="Image 3">
+                        <button class="prev" onclick="changeSlide(-1)">❮</button>
+                        <button class="next" onclick="changeSlide(1)">❯</button>
+                        <button class="productorder join" onclick="openModal()">join for free</button>
+
+                       <div>
+                        
+                      </div>
+                    </div>
+                    
+                        <p class="price"><a href="#2">learn more </a>about the group </p>
+                        
+                    </div>
+                 </div>
+                 <div class="modal" id="joinModal">
+                    <div class="modal-content">
+                      <span class="close" onclick="closeModal()">&times;</span>
+                      <h2>Join Ecochick Farmers</h2>
+                      <form action="https://formsubmit.co/pacemaker870@gmail.com" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <textarea name="message" placeholder="Why do you want to join?" rows="5" required></textarea>
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                        <button type="submit">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+
+            </section>
+        <script>
+            const menu =document.querySelector('.menunav');
+            function closemenu(){
+                menu.style.transform = "translateX(100%)";
+            }
+            function openmenu(){
+                menu.style.transform = "translateX(0)";
+            }
+            let slideIndex = 0;
+
+function showSlides() {
+  const slides = document.getElementsByClassName("mySlides");
+  
+  // Hide all slides
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  // Move to the next slide
+  slideIndex++;
+  if (slideIndex > slides.length) { slideIndex = 1 }
+
+  // Display current slide
+  slides[slideIndex - 1].style.display = "inline-block";
+
+  // Repeat every 3 seconds
+  setTimeout(showSlides, 3000);
+}
+
+// Start the slideshow after the page fully loads
+window.onload = showSlides;
+let slidesIndex = 1;
+    showSlide(slidesIndex);
+
+    // Manual control
+    function changeSlide(n) {
+      showSlide(slidesIndex += n);
+    }
+
+    function showSlide(n) {
+      const slides = document.getElementsByClassName("mySlides");
+
+      if (n > slides.length) { slidesIndex = 1 }
+      if (n < 1) { slidesIndex = slides.length }
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+
+      slides[slidesIndex - 1].style.display = "inline-block";
+
+    }
+    function openModal() {
+      document.getElementById('joinModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('joinModal').style.display = 'none';
+    }
+
+    // Optional: Close modal when clicking outside the form
+    window.onclick = function(event) {
+      const modal = document.getElementById('joinModal');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    
+        </script>
+       </body>
+</html>
