@@ -90,8 +90,8 @@
             }
             .herotext{
            
-          
-          
+          position: absolute;
+          left: 0px;
          margin-top: 38px;
          background-color: rgba(0, 0, 0, 0.5);
          backdrop-filter: blur(4px);
@@ -195,7 +195,7 @@
 
                        @media(max-width : 810px)
            {
-            nav .menunav{
+           .menunav{
                 position:absolute;
                 width: 200px;
                 height: 100vh;
@@ -249,7 +249,6 @@
                 height: 30px;
                 width: 30px;
             }
-             
             .row1 {
       display: flex;
       flex-wrap: wrap;
@@ -263,22 +262,14 @@
         {
             
             
-            .herotext{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -58%);
-
-        }
+         
     }
     @media(max-width : 680px)
     {
         .slogan{
             color: red;
         }
-        .herotext{
-            width: 70%;
-        }
+        
 }
  
                                     /* products section */
@@ -295,49 +286,78 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-    .products{
-        text-align: center;
-        margin-top: 80px;
+   /* Product Section */
+   .products {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
     }
-    .row2{
-        text-align: center;
+
+    .row1 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 30px 20px;
     }
-    
-  .column{
-       height: 60vh;
-       border: none;
-       text-align: center;
+
+    .column {
+      background-color: white;
+      padding: 15px;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
     }
-   
-        .aboutus img{
-        width: 20vw;
-        height: 40vh;
-        border-radius: 15%;
-       
+    .column-farmers-group{
+      width: 600px;
+    }
+
+    .column:hover {
+      transform: scale(1.05);
+    }
+
+    .column img {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .product {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: green;
+    }
+
+    .productorder {
+      padding: 8px 20px;
+      background-color: #d4923d;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .productorder:hover {
+      background-color: #9f6419;
     }
     .mySlides {
-        width: 40vw !important;
+       
         height: 70vh !important;
-    }
-    .aboutus img:hover{
-        height: 44vh;
-        width: 22vw;
-       cursor: pointer;
-         box-shadow: 0px 0px 20px green;
-       }
-       .column:hover .price, .product{
-        color: rgb(4, 85, 4);
-        font-weight: bold;
-      
-       }
-    .product, .price{
-        color: black;
-      text-align: center;
-      transition: color 0.3s;
+        width: fit-content;
     }
     
-   
-    .farmers-div{
+     .column{
         position: relative;
     }
     .prev, .next {
@@ -353,24 +373,33 @@ body {
       z-index: 1;
     }
     .prev{
-        left:30%;
+        left:10%;
     }
     .next{
-        right: 30%;
+        right: 10%;
     }
     .join{
         position: absolute;
-        top: 90%;
+        top: 75%;
         left: 40%;
-        width: 20%;
+        width: 30%;
         height: 6%;
+        animation: swing 1s infinite;
     }
+    @keyframes swing{
+0%{transform: rotate(0deg)}
+20%{transform: rotate(10deg)}
+40%{ transform: rotate(0deg)}
+80%{ transform: rotate(-10deg)}
+100%{transform: rotate(0deg)}
+}
+    
     /* Modal Styles */
     .modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 10%; left: 10%;
+      width: 90%; height: 90%;
       background: rgba(0,0,0,0.5);
       justify-content: center;
       align-items: center;
@@ -381,7 +410,7 @@ body {
       background: white;
       padding: 30px;
       border-radius: 8px;
-      width: 90%;
+      width: 80%;
       max-width: 400px;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
       position: relative;
@@ -458,7 +487,7 @@ body {
                     <p class="offer"> One crate at <span  class="kshoffer">ksh 400 </span>when you buy <span class="kshoffer"> 10 crates </span> and above <button class="graboffer">Grab the offer</button></p>
                         <button class="order" onclick=" 
                         const message = encodeURIComponent(`Hi, I want to order from Ecochick.`);
-                         window.location.href = `whatsapp://send?phone=254716370194&text=${message}`;">Order with us now</button>
+                         window.location.href = `whatsapp://send?phone=25471637&text=${message}`;">Order with us now</button>
                      
             </section>
             <section class="aboutus" id="aboutus">
@@ -469,7 +498,7 @@ body {
                         <img src="ecochick.jpg" alt="">
                         <p class="price">ksh 400 per crate  <button class="productorder">order eggs</button></p>
                     </div>
-                    <div class="column" >
+                    <div class="column" > 
                         <p class="product">chicken</p>
                         <img src="ecologo.jpg" alt="">
                         <p class="price">layers at ksh 850  <button class="productorder">order chicken</button></p>
@@ -480,29 +509,25 @@ body {
                         <p class="price">ksh 200 per 2 weeks chick <button class="productorder">order chicks</button></p>
                         <p class="price">ksh 350 per 4 weeks chick<button class="productorder">order chicks</button></p>
                     </div>
+                    <div class="column column-farmers-group" >
+                        
+                      <p class="product">Ecochick farmers group</p>
+                  <div class="farmers-div">
+                      <img class="mySlides slide1" src="farmers1.jpg" alt="Image 1">
+                      <img class="mySlides" src="farmers2.jpg" alt="Image 2">
+                      <img class="mySlides" src="farmers3.jpg" alt="Image 3">
+                      <button class="prev" onclick="changeSlide(-1)">❮</button>
+                      <button class="next" onclick="changeSlide(1)">❯</button>
+                      <button class="productorder join" onclick="openModal()">join for free</button>
+                      
+                    </div>
+                  
+                      <p class="price"><a href="#2">learn more </a>about the group </p>
+                      
+                  </div>
                   
                 </div>
-                <div class="row2">
-                    <div class="column" >
-                        
-                        <p class="product">Ecochick farmers group</p>
-                    <div class="farmers-div">
-                        <img class="mySlides slide1" src="farmers1.jpg" alt="Image 1">
-                        <img class="mySlides" src="farmers2.jpg" alt="Image 2">
-                        <img class="mySlides" src="farmers3.jpg" alt="Image 3">
-                        <button class="prev" onclick="changeSlide(-1)">❮</button>
-                        <button class="next" onclick="changeSlide(1)">❯</button>
-                        <button class="productorder join" onclick="openModal()">join for free</button>
 
-                       <div>
-                        
-                      </div>
-                    </div>
-                    
-                        <p class="price"><a href="#2">learn more </a>about the group </p>
-                        
-                    </div>
-                 </div>
                  <div class="modal" id="joinModal">
                     <div class="modal-content">
                       <span class="close" onclick="closeModal()">&times;</span>
@@ -586,6 +611,7 @@ let slidesIndex = 1;
         modal.style.display = "none";
       }
     }
+  
 
     
         </script>
