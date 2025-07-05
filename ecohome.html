@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Farm Daily Record</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: Arial, sans-serif;
@@ -92,8 +90,8 @@
   <thead>
     <tr>
       <th>Date</th>
-      <th>Expenses (KSh)</th>
-      <th>Description</th>
+      <th>Total Expenses (KSh)</th>
+      <th>Expense Breakdown</th>
       <th>Eggs Collected</th>
       <th>Eggs Sold</th>
       <th>Egg Price (KSh)</th>
@@ -103,50 +101,47 @@
       <th>Net Profit</th>
     </tr>
   </thead>
-  <tbody id="tableBody">
-    <!-- Data rows will be inserted here -->
-  </tbody>
+  <tbody id="tableBody"></tbody>
 </table>
 
 <h3>Daily Entry Form</h3>
 <form id="farmForm">
   <div>
-    <label for="date">Date:</label>
+    <label>Date:</label>
     <input type="date" id="date" required />
   </div>
 
-  <div>
-    <label for="expenses">Expenses (KSh):</label>
-    <input type="number" id="expenses" required />
+  <div class="full-width">
+    <label>Expenses:</label>
+    <input type="text" id="expenseName" placeholder="What was it used on?" />
+    <input type="number" id="expenseAmount" placeholder="Amount (KSh)" />
+    <button type="button" onclick="addExpense()">➕ Add Expense</button>
+    <div class="expense-list" id="expenseList"></div>
+    <strong>Total Expenses: <span id="totalExpense">0</span> KSh</strong>
   </div>
 
   <div>
-    <label for="expenseDesc">What was it used on?</label>
-    <input type="text" id="expenseDesc" required />
-  </div>
-
-  <div>
-    <label for="eggsCollected">Eggs Collected:</label>
+    <label>Eggs Collected:</label>
     <input type="number" id="eggsCollected" />
   </div>
 
   <div>
-    <label for="eggsSold">Eggs Sold:</label>
+    <label>Eggs Sold (in Crates):</label>
     <input type="number" id="eggsSold" />
   </div>
 
   <div>
-    <label for="eggPrice">Egg Price (KSh):</label>
-    <input type="number" id="eggPrice" />
+    <label>Price per Crate (KSh):</label>
+    <input type="number" id="cratePrice" value="400" />
   </div>
 
   <div>
-    <label for="chickensSold">Chickens Sold:</label>
+    <label>Chickens Sold:</label>
     <input type="number" id="chickensSold" />
   </div>
 
   <div>
-    <label for="chickenPrice">Chicken Price (KSh):</label>
+    <label>Chicken Price (KSh):</label>
     <input type="number" id="chickenPrice" />
   </div>
 
@@ -156,23 +151,53 @@
 <script>
   const form = document.getElementById("farmForm");
   const tableBody = document.getElementById("tableBody");
-
+  let expenseList = [];
   let records = JSON.parse(localStorage.getItem("farmDailyRecords")) || [];
 
+  function addExpense() {
+    const name = document.getElementById('expenseName').value.trim();
+    const amount = parseFloat(document.getElementById('expenseAmount').value);
+
+    if (!name || isNaN(amount) || amount <= 0) {
+      alert('Enter a valid expense name and amount.');
+      return;
+    }
+
+    expenseList.push({ name, amount });
+    document.getElementById('expenseName').value = '';
+    document.getElementById('expenseAmount').value = '';
+    renderExpenses();
+  }
+
+  function renderExpenses() {
+    const list = document.getElementById('expenseList');
+    list.innerHTML = '';
+    let total = 0;
+
+    expenseList.forEach(item => {
+      total += item.amount;
+      const div = document.createElement('div');
+      div.textContent = `${item.name}: KSh ${item.amount}`;
+      list.appendChild(div);
+    });
+
+    document.getElementById('totalExpense').textContent = total.toFixed(2);
+  }
+
   function renderTable() {
-    tableBody.innerHTML = "";
+    tableBody.innerHTML = '';
     records.forEach(record => {
       const row = `<tr>
         <td>${record.date}</td>
-        <td>${record.expenses.toLocaleString()}</td>
-        <td>${record.expenseDesc}</td>
+        <td>${record.totalExpenses.toLocaleString()}</td>
+        <td>${record.expenseList.map(e => `${e.name} (KSh ${e.amount})`).join('<br>')}</td>
         <td>${record.eggsCollected}</td>
         <td>${record.eggsSold}</td>
-        <td>${record.eggPrice}</td>
+        <td>${record.cratePrice}</td>
         <td>${record.chickensSold}</td>
         <td>${record.chickenPrice}</td>
-        <td>${record.totalIncome.toLocaleString()}</td>
-        <td>${record.netProfit.toLocaleString()}</td>
+        <td>${record.totalRevenue.toLocaleString()}</td>
+        <td>${record.profit.toLocaleString()}</td>
       </tr>`;
       tableBody.innerHTML += row;
     });
@@ -181,29 +206,40 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const record = {
-      date: document.getElementById("date").value,
-      expenses: parseFloat(document.getElementById("expenses").value) || 0,
-      expenseDesc: document.getElementById("expenseDesc").value,
-      eggsCollected: parseInt(document.getElementById("eggsCollected").value) || 0,
-      eggsSold: parseInt(document.getElementById("eggsSold").value) || 0,
-      eggPrice: parseFloat(document.getElementById("eggPrice").value) || 0,
-      chickensSold: parseInt(document.getElementById("chickensSold").value) || 0,
-      chickenPrice: parseFloat(document.getElementById("chickenPrice").value) || 0,
-    };
+    const date = document.getElementById('date').value;
+    const eggsCollected = parseInt(document.getElementById('eggsCollected').value) || 0;
+    const eggsSold = parseInt(document.getElementById('eggsSold').value) || 0;
+    const cratePrice = parseFloat(document.getElementById('cratePrice').value) || 0;
+    const chickensSold = parseInt(document.getElementById('chickensSold').value) || 0;
+    const chickenPrice = parseFloat(document.getElementById('chickenPrice').value) || 0;
+    const totalExpenses = expenseList.reduce((sum, item) => sum + item.amount, 0);
+    const eggRevenue = eggsSold * cratePrice;
+    const chickenRevenue = chickensSold * chickenPrice;
+    const totalRevenue = eggRevenue + chickenRevenue;
+    const profit = totalRevenue - totalExpenses;
 
-    const eggIncome = record.eggsSold * record.eggPrice;
-    const chickenIncome = record.chickensSold * record.chickenPrice;
-    record.totalIncome = eggIncome + chickenIncome;
-    record.netProfit = record.totalIncome - record.expenses;
+    const record = {
+      date,
+      expenseList: [...expenseList],
+      totalExpenses,
+      eggsCollected,
+      eggsSold,
+      cratePrice,
+      chickensSold,
+      chickenPrice,
+      totalRevenue,
+      profit
+    };
 
     records.push(record);
     localStorage.setItem("farmDailyRecords", JSON.stringify(records));
     renderTable();
     form.reset();
+    expenseList = [];
+    renderExpenses();
   });
 
-  renderTable(); // Load stored records on page load
+  renderTable();
 </script>
 
 </body>
