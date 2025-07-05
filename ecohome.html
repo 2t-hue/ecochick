@@ -1,271 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecochick</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farm Daily Record</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(270deg, #6d0898, #720566, #490666, #7909a8);
-      background-size: 800% 800%;
-      animation: waveGradient 10s ease infinite;
+      padding: 20px;
+      margin: 0;
+      background-color: #f4f6f8;
     }
 
-    @keyframes waveGradient {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+    h2, h3 {
+      text-align: center;
+      color: #333;
     }
 
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(0, 0, 0, 0.85);
-      padding: 10px 0;
-      z-index: 1000;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
     }
 
-    nav .menu {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      margin: auto;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 50px;
-      margin-right: 10px;
-      border-radius: 4px;
-    }
-
-    .logo a {
-      color: green;
-      font-size: 26px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 14px;
-      font-size: 18px;
-      border-radius: 6px;
-    }
-
-    nav ul li:hover::after{
-                content:'';
-                width: 80%;
-                height: 2px;
-                background:green;
-                display: block;
-                margin: auto;
-
-            }
-
-    .menu-icon {
-      display: none;
-      font-size: 28px;
-      color: white;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        background: #111;
-        width: 200px;
-        height: 100vh;
-        display: none;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      .menu-icon {
-        display: block;
-      }
-    }
-
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(to right, rgba(11, 14, 11, 0.8), rgba(212, 146, 61, 0.3)),
-        url('ecologo cropped1.jpg') center/cover no-repeat;
-        display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 20px;
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
       text-align: center;
     }
 
-    .herotext {
-      max-width: 700px;
-      background-color: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .herotext h1 {
-      font-size: 48px;
-      background: linear-gradient(to right, #ffdf3c, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-    }
-
-    .herotext p {
-      font-size: 18px;
-      color: #f8f8f8;
-      margin-bottom: 12px;
-      line-height: 1.6;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-
-    .offer {
-      margin-top: 20px;
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .kshoffer {
-      color: yellow;
-    }
-
-    .graboffer {
-      background-color: #d4923d;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-left: 10px;
-      cursor: pointer;
-      border: none;
-    }
-
-    .graboffer:hover {
-      background-color: #8f6017;
-    }
-
-    .order {
-      display: inline-block;
-      margin-top: 20px;
-      width: 260px;
-      height: 42px;
-      font-size: 18px;
-      background-color: #d4923d;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      font-weight: bold;
+    th {
+      background-color: #2d7d46;
       color: white;
-      animation: swing 2s infinite;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .add-btn {
+      background: #2d7d46;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 16px;
+      width: 100%;
       cursor: pointer;
-      box-shadow: 0 0 8px rgba(255,255,255,0.3);
-      transition: background-color 0.3s, box-shadow 0.3s;
+      grid-column: 1 / -1;
     }
 
-    .order:hover {
-      background-color: #b67b25;
-      box-shadow: 0 0 12px rgba(255,255,255,0.5);
-    }
-
-    @keyframes swing {
-      0% { transform: rotate(0deg); }
-      25% { transform: rotate(5deg); }
-      50% { transform: rotate(0deg); }
-      75% { transform: rotate(-5deg); }
-      100% { transform: rotate(0deg); }
+    @media (max-width: 480px) {
+      form {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="menu">
-      <div class="logo">
-        <img src="ecologo.jpg" alt="Logo">
-        <a href="#">Ecochick</a>
-      </div>
-      <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
-      <ul id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">About Us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a href="#">Give Feedback</a></li>
-      </ul>
-    </div>
-  </nav>
+<h2>🐔 Farm Daily Record</h2>
 
-  <!-- HERO SECTION -->
-  <section class="hero" id="home">
-    <div class="herotext">
-      <h1>Eggxactly what the nature provides</h1>
-      <p class="slogan">Plenty of proteins with their natural taste</p>
-      <p>In search of protein-rich food? We've got you covered.</p>
-      <p>We are an ecofriendly organisation that allows chicken to naturally <br> interact with the environment and give the eggs to us.</p>
-      <p>One crate at Ksh 500</p>
-      <p class="offer">One crate at <span class="kshoffer">Ksh 400</span> when you buy <span class="kshoffer">10 crates</span> and above
-        <button class="graboffer" onclick="orderViaWhatsApp(10, 'crates of eggs')">Grab the offer</button>
-      </p>
-      <button class="order" onclick="orderViaWhatsApp(1, 'crates of eggs')">Order with us now</button>
-    </div>
-  </section>
- <div class="herotext">
-            <h1 > Eggxactly what the nature provides  </h1>
-            <p class="slogan">Plenty of proteins with their nature taste</p>
-            <p> in search of proteins rich food, we got you covered</p>
-            <p>we are an ecofriendly organisation that allow chicken to naturally intract with the environment and give tye eggs to us.</p>
-            <p>One crate at ksh 500</p>
-            <p class="offer"> One crate at <span class="kshoffer">ksh 400 </span>when you buy 10 crates and above <button class="graboffer">Grab the offer</button></p>
-            <button  class="order"> order with us now</button>
-           </div> 
-        
-        <img class="heroimage" src="ecochick.jpg" alt="">
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('nav-links');
-      nav.classList.toggle('show');
-    }
+<table id="farmTable">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Expenses (KSh)</th>
+      <th>Description</th>
+      <th>Eggs Collected</th>
+      <th>Eggs Sold</th>
+      <th>Egg Price (KSh)</th>
+      <th>Chickens Sold</th>
+      <th>Chicken Price (KSh)</th>
+      <th>Total Income</th>
+      <th>Net Profit</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+    <!-- Data rows will be inserted here -->
+  </tbody>
+</table>
 
-    function orderViaWhatsApp(minQty = 1, item = 'items') {
-      const qty = prompt(`How many ${item} do you want to order?`);
-      if (!qty || isNaN(qty) || Number(qty) < minQty) {
-        alert(`Please enter a valid number${minQty > 1 ? ` (minimum ${minQty})` : ''}.`);
-        return;
-      }
-      const message = encodeURIComponent(`Hi Ecochickfarm, I want to order ${qty} ${item} .`);
-      window.location.href = `whatsapp://send?phone=254796433217&text=${message}`;
-    }
-  </script>
+<h3>Daily Entry Form</h3>
+<form id="farmForm">
+  <div>
+    <label for="date">Date:</label>
+    <input type="date" id="date" required />
+  </div>
+
+  <div>
+    <label for="expenses">Expenses (KSh):</label>
+    <input type="number" id="expenses" required />
+  </div>
+
+  <div>
+    <label for="expenseDesc">What was it used on?</label>
+    <input type="text" id="expenseDesc" required />
+  </div>
+
+  <div>
+    <label for="eggsCollected">Eggs Collected:</label>
+    <input type="number" id="eggsCollected" />
+  </div>
+
+  <div>
+    <label for="eggsSold">Eggs Sold:</label>
+    <input type="number" id="eggsSold" />
+  </div>
+
+  <div>
+    <label for="eggPrice">Egg Price (KSh):</label>
+    <input type="number" id="eggPrice" />
+  </div>
+
+  <div>
+    <label for="chickensSold">Chickens Sold:</label>
+    <input type="number" id="chickensSold" />
+  </div>
+
+  <div>
+    <label for="chickenPrice">Chicken Price (KSh):</label>
+    <input type="number" id="chickenPrice" />
+  </div>
+
+  <button type="submit" class="add-btn">➕ Add Daily Record</button>
+</form>
+
+<script>
+  const form = document.getElementById("farmForm");
+  const tableBody = document.getElementById("tableBody");
+
+  let records = JSON.parse(localStorage.getItem("farmDailyRecords")) || [];
+
+  function renderTable() {
+    tableBody.innerHTML = "";
+    records.forEach(record => {
+      const row = `<tr>
+        <td>${record.date}</td>
+        <td>${record.expenses.toLocaleString()}</td>
+        <td>${record.expenseDesc}</td>
+        <td>${record.eggsCollected}</td>
+        <td>${record.eggsSold}</td>
+        <td>${record.eggPrice}</td>
+        <td>${record.chickensSold}</td>
+        <td>${record.chickenPrice}</td>
+        <td>${record.totalIncome.toLocaleString()}</td>
+        <td>${record.netProfit.toLocaleString()}</td>
+      </tr>`;
+      tableBody.innerHTML += row;
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const record = {
+      date: document.getElementById("date").value,
+      expenses: parseFloat(document.getElementById("expenses").value) || 0,
+      expenseDesc: document.getElementById("expenseDesc").value,
+      eggsCollected: parseInt(document.getElementById("eggsCollected").value) || 0,
+      eggsSold: parseInt(document.getElementById("eggsSold").value) || 0,
+      eggPrice: parseFloat(document.getElementById("eggPrice").value) || 0,
+      chickensSold: parseInt(document.getElementById("chickensSold").value) || 0,
+      chickenPrice: parseFloat(document.getElementById("chickenPrice").value) || 0,
+    };
+
+    const eggIncome = record.eggsSold * record.eggPrice;
+    const chickenIncome = record.chickensSold * record.chickenPrice;
+    record.totalIncome = eggIncome + chickenIncome;
+    record.netProfit = record.totalIncome - record.expenses;
+
+    records.push(record);
+    localStorage.setItem("farmDailyRecords", JSON.stringify(records));
+    renderTable();
+    form.reset();
+  });
+
+  renderTable(); // Load stored records on page load
+</script>
 
 </body>
 </html>
